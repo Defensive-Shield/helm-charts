@@ -1,0 +1,5 @@
+name: "tunnel"
+secret: "entertunnelsecret"
+image: "tines/tines-tunnel:latest"
+cpu: "1028m"
+memory: "2048Mi"
