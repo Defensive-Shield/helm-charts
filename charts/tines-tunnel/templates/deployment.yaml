@@ -2,27 +2,27 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    service: { { .Values.name } }
-  name: { { .Values.name } }
+    service: {{ .Values.name }}
+  name: {{ .Values.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      service: { { .Values.name } }
+      service: {{ .Values.name }}
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
         network: "true"
-        service: { { .Values.name } }
+        service: {{ .Values.name }}
     spec:
       containers:
-        - name: { { .Values.name } }
-          image: { { .Values.image } }
+        - name: {{ .Values.name }}
+          image: {{ .Values.image }}
           env:
             - name: TINES_TUNNEL_SECRET
-              value: { { .Values.secret } }
+              value: {{ .Values.secret }}
           ports:
             - containerPort: 443
           resources:
@@ -30,6 +30,6 @@ spec:
               cpu: 2048m
               memory: 4096Mi
             requests:
-              cpu: { { .Values.cpu } }
-              memory: { { .Values.memory } }
+              cpu: {{ .Values.cpu }}
+              memory: {{ .Values.memory }}
       restartPolicy: Always
